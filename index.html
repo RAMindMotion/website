@@ -162,6 +162,9 @@
   .cta .lead{color:#c9dccf;margin-left:auto;margin-right:auto;margin-bottom:32px}
   .cta .label{color:var(--sage)}
   .cta .signup input[type=email]{border-color:transparent}
+  .cta-btn{background:var(--teal)} .cta-btn:hover{background:var(--teal-light)}
+  .cta-note{max-width:520px;margin:18px auto 0;font-size:.82rem;line-height:1.5;color:#cfe0d4}
+  .cta-note a{color:var(--sage);font-weight:600}
 
   /* FOOTER */
   footer{background:#0f1a15;padding:32px 56px;color:#b5cbbc}
@@ -362,19 +365,9 @@
   <div class="inner">
     <div class="label">Early access</div>
     <h2 class="title">Be among the first to try MindMotion.</h2>
-    <p class="lead">We&rsquo;re inviting a small group of early users. Leave your email and we&rsquo;ll be in touch.</p>
-    <form class="signup dark" data-signup action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-      <div class="signup-row">
-        <label class="sr-only" for="email-cta">Email address</label>
-        <input id="email-cta" type="email" name="email" placeholder="Your email address" autocomplete="email" required>
-        <button class="btn" type="submit">Join early access</button>
-      </div>
-      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <input type="hidden" name="source" value="home-footer-cta">
-      <label class="consent"><input type="checkbox" name="consent" value="yes" required>
-        <span>I agree to be contacted about MindMotion early access. </span></label>
-      <p class="form-msg" role="status" aria-live="polite"></p>
-    </form>
+    <p class="lead">We&rsquo;re inviting a small group of early users. Send us a short email and we&rsquo;ll be in touch.</p>
+    <a class="btn cta-btn" href="mailto:contact@mindmotion.in?subject=Early%20access%20request&amp;body=Hi%20MindMotion%2C%0A%0AI%E2%80%99d%20like%20to%20join%20early%20access.%0A%0AName%3A%20%0A">Join early access</a>
+    <p class="cta-note">Or write to us at <a href="mailto:contact@mindmotion.in">contact@mindmotion.in</a>. By emailing, you agree we may contact you about MindMotion early access.</p>
   </div>
 </section>
 
@@ -392,27 +385,5 @@
   <p class="disclaimer">MindMotion is in active development and offers general health education and lifestyle guidance. It is not a medical device and does not diagnose, treat or prevent any disease. It is not a substitute for professional medical advice. Always talk to a qualified healthcare professional about your health.</p>
 </footer>
 
-<script>
-(function(){
-  document.querySelectorAll('form[data-signup]').forEach(function(f){
-    var msg=f.querySelector('.form-msg'), btn=f.querySelector('button[type=submit]');
-    f.addEventListener('submit',function(e){
-      e.preventDefault();
-      msg.className='form-msg';
-      var email=f.elements.email;
-      if(!email.value||!email.checkValidity()){msg.textContent='Please enter a valid email address.';msg.className='form-msg err';email.focus();return;}
-      if(!f.elements.consent.checked){msg.textContent='Please tick the box so we can contact you.';msg.className='form-msg err';return;}
-      if(f.elements._gotcha.value){return;}
-      if(f.action.indexOf('YOUR_FORM_ID')>-1){msg.textContent='Form not connected yet.';msg.className='form-msg err';return;}
-      btn.disabled=true;
-      fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
-        .then(function(r){ if(r.ok){f.reset();msg.textContent='Thanks. You are on the list, and we will be in touch.';msg.className='form-msg ok';}
-                           else{throw new Error('bad');} })
-        .catch(function(){msg.textContent='Something went wrong. Please try again, or email contact@mindmotion.in.';msg.className='form-msg err';})
-        .then(function(){btn.disabled=false;});
-    });
-  });
-})();
-</script>
 </body>
 </html>
