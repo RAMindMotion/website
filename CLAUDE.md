@@ -27,8 +27,8 @@ Static landing page for MindMotion, an AI preventive health platform for urban I
 - CIN U62090HR2026PTC143626
 - Gurugram
 - contact@mindmotion.in
-- The medical disclaimer
-- No Privacy or Terms links until those pages exist.
+- A one-sentence medical disclaimer that links to the full text at `/privacy/#disclaimer` (section 12 of the Privacy Policy). Do not remove the disclaimer or the link.
+- A Privacy Policy link (`/privacy/`). No Terms link until that page exists.
 
 ## Claims discipline
 - Every statistic needs a visible source on the page.
